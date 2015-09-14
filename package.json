@@ -1,6 +1,6 @@
 {
   "name": "acorn-jsx-walk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parse and walk through a Javascript ES6/JSX code source",
   "main": "lib/index.js",
   "directories": {
