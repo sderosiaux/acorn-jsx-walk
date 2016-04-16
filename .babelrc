@@ -1,4 +1,4 @@
 {
-  "stage": 0,
-  "loose": "all"
+  "plugins": ["transform-es2015-modules-commonjs"],
+  "presets": ["airbnb", "es2015-loose"]
 }

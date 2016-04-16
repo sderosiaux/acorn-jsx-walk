@@ -1,45 +1,43 @@
 {
   "name": "acorn-jsx-walk",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Parse and walk through a Javascript ES6/JSX code source",
-  "main": "lib/index.js",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {
-    "acorn-jsx": "^2.0.0"
-  },
-  "devDependencies": {
-    "babel": "^5.8.23",
-    "babel-core": "^5.8.24",
-    "babel-loader": "^5.3.2",
-    "eslint": "^1.4.1",
-    "eslint-config-airbnb": "0.0.8",
-    "rimraf": "^2.4.3",
-    "webpack": "^1.12.1"
-  },
+  "author": "Stéphane DEROSIAUX",
+  "license": "MIT",
   "keywords": [
     "acorn",
     "jsx",
     "walk",
     "parse"
   ],
-  "scripts": {
-    "clean": "rimraf lib dist",
-    "build": "babel index.js walk.js --out-dir lib",
-    "build:umd": "webpack index.js dist/acorn-jsx-walk.js && set NODE_ENV=production&& webpack index.js dist/acorn-jsx-walk.min.js",
-    "lint": "eslint index.js",
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chtefi/acorn-jsx-walk.git"
   },
-  "author": "Stéphane DEROSIAUX",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/chtefi/acorn-jsx-walk/issues"
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
   },
-  "homepage": "https://github.com/chtefi/acorn-jsx-walk#readme"
+  "dependencies": {
+    "acorn-jsx": "^3.0.0",
+    "babel-cli": "^6.7.5"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.2",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.7.4",
+    "babel-preset-airbnb": "^1.1.1",
+    "babel-preset-es2015-loose": "^7.0.0",
+    "eslint": "^2.7.0",
+    "rimraf": "^2.5.2",
+    "webpack": "^1.12.15"
+  },
+  "scripts": {
+    "clean": "rimraf lib dist",
+    "build": "babel index.js walk.js --out-dir lib",
+    "build:umd": "webpack index.js dist/acorn-jsx-walk.js && set NODE_ENV=production && webpack index.js dist/acorn-jsx-walk.min.js",
+    "lint": "eslint index.js",
+    "test": "ava",
+    "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd"
+  }
 }
