@@ -20,7 +20,7 @@ export function simple(node, visitors, base, state, override) {
   if (!base) base = exports.base
   ;(function c(node, st, override) {
     let type = override || node.type, found = visitors[type]
-    base[type](node, st, c)
+    if (base[type]) base[type](node, st, c)
     if (found) found(node, st)
   })(node, state, override)
 }
@@ -36,7 +36,7 @@ export function ancestor(node, visitors, base, state) {
       st = st.slice()
       st.push(node)
     }
-    base[type](node, st, c)
+    if (base[type]) base[type](node, st, c)
     if (found) found(node, st)
   })(node, state)
 }
@@ -77,7 +77,7 @@ export function findNodeAt(node, start, end, test, base, state) {
       let type = override || node.type
       if ((start == null || node.start <= start) &&
           (end == null || node.end >= end))
-        base[type](node, st, c)
+        if (base[type]) base[type](node, st, c)
       if ((start == null || node.start == start) &&
           (end == null || node.end == end) &&
           test(type, node))
@@ -98,7 +98,7 @@ export function findNodeAround(node, pos, test, base, state) {
     ;(function c(node, st, override) {
       let type = override || node.type
       if (node.start > pos || node.end < pos) return
-      base[type](node, st, c)
+      if (base[type]) base[type](node, st, c)
       if (test(type, node)) throw new Found(node, st)
     })(node, state)
   } catch (e) {
@@ -116,7 +116,7 @@ export function findNodeAfter(node, pos, test, base, state) {
       if (node.end < pos) return
       let type = override || node.type
       if (node.start >= pos && test(type, node)) throw new Found(node, st)
-      base[type](node, st, c)
+      if (base[type]) base[type](node, st, c)
     })(node, state)
   } catch (e) {
     if (e instanceof Found) return e
@@ -134,7 +134,7 @@ export function findNodeBefore(node, pos, test, base, state) {
     let type = override || node.type
     if (node.end <= pos && (!max || max.node.end < node.end) && test(type, node))
       max = new Found(node, st)
-    base[type](node, st, c)
+    if (base[type]) base[type](node, st, c)
   })(node, state)
   return max
 }

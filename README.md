@@ -1,17 +1,20 @@
-# acorn-jsx-walk
+# flow-jsx-walk
 
-Parse and walk through a Javascript ES6/JSX code source.
+A fork of [acorn-jsx-walk](https://github.com/chtefi/acorn-jsx-walk)
+that uses the flow parser to support
+ecmascript features like decorators and spread operators.
+Parse and walk through a Javascript JSX code source.
 
 ## Install
 
 ```shell
-npm install --save acorn-jsx-walk
+npm install --save flow-jsx-walk
 ```
 
 ## Example
 
 ```js
-import walk, { base } from 'acorn-jsx-walk';
+import walk, { base } from 'flow-jsx-walk';
 
 // base contains all the possible node walkers, see walk.js
 // Program, BlockStatement, ExpressionStatement, SwitchStatement etc.

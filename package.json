@@ -1,8 +1,8 @@
 {
-  "name": "acorn-jsx-walk",
-  "version": "1.1.0",
-  "description": "Parse and walk through a Javascript ES6/JSX code source",
-  "author": "Stéphane DEROSIAUX",
+  "name": "flow-jsx-walk",
+  "version": "1.0.0",
+  "description": "Parse and walk through a Javascript/JSX code source",
+  "author": "Heidi Kasemir",
   "license": "MIT",
   "keywords": [
     "acorn",
@@ -12,15 +12,16 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chtefi/acorn-jsx-walk.git"
+    "url": "git+https://github.com/hkasemir/flow-jsx-walk.git"
   },
   "main": "lib/index.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "acorn-jsx": "^3.0.0",
-    "babel-cli": "^6.7.5"
+    "ava": "^0.25.0",
+    "babel-cli": "^6.7.5",
+    "flow-parser": "^0.64.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.2",
