@@ -1,4 +1,5 @@
 .DS_Store
 .ignore/
+.reify-cache/
 node_modules/
 dist/
