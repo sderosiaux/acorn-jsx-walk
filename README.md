@@ -11,12 +11,12 @@ npm install acorn-jsx-walk
 ## Example
 
 ```js
-// Create Acorn parser with JSX support
+// Extend Acorn parser with JSX
 const acorn = require('acorn')
 const jsx = require('acorn-jsx')
 const parser = acorn.Parser.extend(jsx())
 
-// Create Acorn walker with JSX support
+// Extend Acorn walk with JSX Walk
 const acornWalk = require('acorn-walk')
 const jsxWalk = require('acorn-jsx-walk')
 const walk = jsxWalk(acornWalk)
@@ -39,14 +39,12 @@ walk.simple(ast, {
 })
 ```
 
-<br>
-
-<br>
-
 ---
 
-Copyright 2019 [Contributors](https://github.com/sderosiaux/acorn-jsx-walk/graphs/contributors)
-<br>
-Open source under the [MIT License](https://github.com/sderosiaux/acorn-jsx-walk/blob/master/LICENSE).
-
-Special thanks to @sderosiaux and @adrianheine.
+<p>
+Copyright 2019 <a href="https://github.com/sderosiaux/acorn-jsx-walk/graphs/contributors">Contributors</a>
+	<br>
+Open source under the <a href="https://github.com/sderosiaux/acorn-jsx-walk/blob/master/LICENSE">MIT License</a>.
+	<br>
+Special thanks to <a href="https://github.com/sderosiaux">@sderosiaux</a> and <a href="https://github.com/adrianheine">@adrianheine</a>.
+</p>
