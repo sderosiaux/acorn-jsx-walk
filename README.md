@@ -1,42 +1,52 @@
 # acorn-jsx-walk
 
-Parse and walk through a Javascript ES6/JSX code source.
+JSX support for Acorn Walk.
 
 ## Install
 
-```shell
-npm install --save acorn-jsx-walk
+```sh
+npm install acorn-jsx-walk
 ```
 
 ## Example
 
 ```js
-import walk, { base } from 'acorn-jsx-walk';
+// Create Acorn parser with JSX support
+const acorn = require('acorn')
+const jsx = require('acorn-jsx')
+const parser = acorn.Parser.extend(jsx())
 
-// base contains all the possible node walkers, see walk.js
-// Program, BlockStatement, ExpressionStatement, SwitchStatement etc.
+// Create Acorn walker with JSX support
+const acornWalk = require('acorn-walk')
+const jsxWalk = require('acorn-jsx-walk')
+const walk = jsxWalk(acornWalk)
 
+// Create AST from source containing JSX
 const source = `
-  const a = 2;
-  const f = (u) => {
-    const m = <div>Hey</div>;
-    return m;
-  }`;
-  
-walk(source, {
-  VariableDeclaration: (node) => { console.log(node.declarations.map(n => n.id.name)) },
-});
+  const a = 2
+  const fn = () => {
+    const el = <div>Hello world!</div>
+    return el
+  }
+`
+const ast = parser.parse(source)
 
-/*
-[ 'a' ]
-[ 'm' ]
-[ 'f' ]
- */
+// Finally...
+walk.simple(ast, {
+  JSXElement(node) {
+    console.log(`Found a ${node.type}!`)
+  },
+})
 ```
 
-## Note
+<br>
 
-It's using the `walk` method of `acorn` but extends it with the JSX addons.
-It is shamelessly copied from
-[acorn](https://github.com/marijnh/acorn/blob/master/src/walk/index.js) code
-source because it is not possible to import it in another project properly.
+<br>
+
+---
+
+Copyright 2019 [Contributors](https://github.com/sderosiaux/acorn-jsx-walk/graphs/contributors)
+<br>
+Open source under the [MIT License](https://github.com/sderosiaux/acorn-jsx-walk/blob/master/LICENSE).
+
+Special thanks to @sderosiaux and @adrianheine.

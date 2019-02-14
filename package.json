@@ -1,9 +1,7 @@
 {
   "name": "acorn-jsx-walk",
   "version": "1.1.0",
-  "description": "Parse and walk through a Javascript ES6/JSX code source",
-  "author": "Stéphane DEROSIAUX",
-  "license": "MIT",
+  "description": "JSX support for Acorn Walk",
   "keywords": [
     "acorn",
     "jsx",
@@ -12,24 +10,35 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chtefi/acorn-jsx-walk.git"
+    "url": "git+https://github.com/sderosiaux/acorn-jsx-walk.git"
   },
-  "main": "lib/index.js",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {
-    "acorn-jsx": "^3.0.0"
+  "main": "dist/jsxWalk.js",
+  "module": "dist/jsxWalk.es.js",
+  "jsnext:main": "dist/jsxWalk.es.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "npm run bundle && npm run bundle:min",
+    "bundle": "./node_modules/rollup/bin/rollup -c ./build/rollup.conf.js",
+    "bundle:min": "./node_modules/rollup/bin/rollup -c ./build/rollup.conf.min.js",
+    "lint": "./node_modules/eslint/bin/eslint.js src test",
+    "pretest": "rimraf .ignore/coverage/**/ && npm run lint",
+    "test": "ava",
+    "testing": "npm test -- --watch",
+    "prepublish": "npm test && npm run build"
   },
   "devDependencies": {
-    "eslint": "^2.7.0",
+    "ava": "^1.2.1",
+    "eslint": "^5.13.0",
     "rimraf": "^2.5.2",
-    "webpack": "^1.12.15"
+    "rollup": "^1.1.2",
+    "rollup-plugin-buble": "^0.19.6",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-uglify": "^6.0.2"
   },
-  "scripts": {
-    "clean": "rimraf lib dist",
-    "lint": "eslint src test",
-    "test": "ava",
-    "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd"
-  }
+  "author": "Julian Lloyd <tealight@jlmak.es>",
+  "license": "MIT"
 }
