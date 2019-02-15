@@ -13,7 +13,7 @@ function jsxWalk(walk) {
 
   base.JSXSpreadAttribute = SpreadElement
 
-  base.JSXAttribute = function(node, state, callback) {
+  base.JSXAttribute = (node, state, callback) => {
     callback(node.name, state)
     if (node.value) callback(node.value, state)
   }
@@ -28,18 +28,18 @@ function jsxWalk(walk) {
     callback(node.name, state)
   }
 
-  base.JSXOpeningElement = function(node, state, callback) {
+  base.JSXOpeningElement = (node, state, callback) => {
     callback(node.name, state)
     for (let i = 0; i < node.attributes.length; ++i) {
       callback(node.attributes[i], state)
     }
   }
 
-  base.JSXClosingElement = function(node, state, callback) {
+  base.JSXClosingElement = (node, state, callback) => {
     callback(node.name, state)
   }
 
-  base.JSXElement = function(node, state, callback) {
+  base.JSXElement = (node, state, callback) => {
     callback(node.openingElement, state)
     for (let i = 0; i < node.children.length; ++i) {
       callback(node.children[i], state)
@@ -47,7 +47,7 @@ function jsxWalk(walk) {
     if (node.closingElement) callback(node.closingElement, state)
   }
 
-  base.JSXFragment = function(node, state, callback) {
+  base.JSXFragment = (node, state, callback) => {
     callback(node.openingFragment, state)
     for (let i = 0; i < node.children.length; ++i) {
       callback(node.children[i], state)
