@@ -1,3 +1,7 @@
+import acorn from 'acorn'
+import jsx from 'acorn-jsx'
+import walk from 'acorn-walk'
+
 import { assert } from 'chai'
 import withJsx from '../src'
 
@@ -74,5 +78,34 @@ describe('JSX support for Acorn Walk', () => {
     it('Extends walk base with JSXFragment', () => {
       assert.isDefined(mockWalk.base.JSXFragment)
     })
+  })
+})
+
+describe('Integration Test', () => {
+  it('Should find JSX Elements', () => {
+    // import acorn from 'acorn'
+    // import jsx from 'acorn-jsx'
+    // import walk from 'acorn-walk'
+    const parser = acorn.Parser.extend(jsx())
+
+    withJsx(walk)
+
+    const source = `
+      const a = 2
+      const fn = () => {
+        const el = <div>Hello world!</div>
+        return el
+      }
+    `
+    const ast = parser.parse(source)
+
+    let found
+    walk.simple(ast, {
+      JSXElement(node) {
+        found = node
+      },
+    })
+
+    assert.isDefined(found)
   })
 })

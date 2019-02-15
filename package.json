@@ -30,6 +30,9 @@
     "prepublish": "npm test && npm run build"
   },
   "devDependencies": {
+    "acorn": "^6.1.0",
+    "acorn-jsx": "^5.0.1",
+    "acorn-walk": "^6.1.1",
     "chai": "^4.2.0",
     "eslint": "^5.13.0",
     "mocha": "^5.2.0",
