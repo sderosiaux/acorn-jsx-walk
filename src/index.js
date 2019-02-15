@@ -1,5 +1,5 @@
-function jsxWalk(walk) {
-  const base = walk.base
+export default function withJsx(walk) {
+  const { base } = walk
   const { ExpressionStatement, Identifier, SpreadElement } = base
 
   // prettier-ignore
@@ -55,8 +55,4 @@ function jsxWalk(walk) {
     }
     callback(node.closingFragment, state)
   }
-
-  return walk
 }
-
-export default jsxWalk

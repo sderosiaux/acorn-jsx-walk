@@ -17,9 +17,10 @@ const jsx = require('acorn-jsx')
 const parser = acorn.Parser.extend(jsx())
 
 // Extend Acorn walk with JSX Walk
-const acornWalk = require('acorn-walk')
-const jsxWalk = require('acorn-jsx-walk')
-const walk = jsxWalk(acornWalk)
+const walk = require('acorn-walk')
+const withJsx = require('acorn-jsx-walk')
+
+withJsx(walk)
 
 // Create AST from source containing JSX
 const source = `
