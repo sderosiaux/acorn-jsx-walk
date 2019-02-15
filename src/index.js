@@ -2,16 +2,17 @@ function jsxWalk(walk) {
   const base = walk.base
   const { ExpressionStatement, Identifier, SpreadElement } = base
 
-  base.JSXExpressionContainer = ExpressionStatement
-  base.JSXSpreadChild = ExpressionStatement
-
-  base.JSXClosingFragment = Identifier
-  base.JSXEmptyExpression = Identifier
-  base.JSXIdentifier = Identifier
-  base.JSXOpeningFragment = Identifier
-  base.JSXText = Identifier
-
-  base.JSXSpreadAttribute = SpreadElement
+  // prettier-ignore
+  {
+    base.JSXExpressionContainer = ExpressionStatement
+    base.JSXSpreadChild         = ExpressionStatement
+    base.JSXClosingFragment     = Identifier
+    base.JSXEmptyExpression     = Identifier
+    base.JSXIdentifier          = Identifier
+    base.JSXOpeningFragment     = Identifier
+    base.JSXText                = Identifier
+    base.JSXSpreadAttribute     = SpreadElement
+  }
 
   base.JSXAttribute = (node, state, callback) => {
     callback(node.name, state)
