@@ -14,7 +14,7 @@ const es = Object.assign({}, base, {
   output: {
     banner,
     format: 'es',
-    file: './dist/acorn-jsx-walk.es.js',
+    file: './dist/acorn-jsx-walk.mjs',
   },
 })
 
@@ -23,7 +23,7 @@ const umd = Object.assign({}, base, {
     banner,
     format: 'umd',
     file: './dist/acorn-jsx-walk.js',
-    name: 'jsxWalk',
+    name: 'withJsx',
   },
 })
 
