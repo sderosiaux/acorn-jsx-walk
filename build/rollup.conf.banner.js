@@ -1,10 +1,10 @@
 const { version } = require('../package.json')
 
-export const condensed = `/*! @license Acorn JSX Walk v${version} (MIT) Copyright 2018 Contributors. */`
+export const condensed = `/*! @license Acorn JSX Walk v${version} (MIT) Copyright 2019 Contributors. */`
 
 export const standard = `/*! @license Acorn JSX Walk v${version}
 
-	Copyright 2018 Contributors.
+	Copyright 2019 Contributors.
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
