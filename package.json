@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/sderosiaux/acorn-jsx-walk.git"
   },
-  "main": "dist/jsxWalk.js",
-  "module": "dist/jsxWalk.mjs",
+  "main": "dist/acorn-jsx-walk.js",
+  "module": "dist/acorn-jsx-walk.mjs",
   "files": [
     "dist"
   ],
