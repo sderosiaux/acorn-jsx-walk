@@ -3,7 +3,7 @@ import jsx from 'acorn-jsx'
 import walk from 'acorn-walk'
 
 import { assert } from 'chai'
-import withJsx, { extendBase } from '../src'
+import { extendBase, extendWalk } from '../src'
 
 const mockBase = {
   ExpressionStatement: true,
@@ -98,7 +98,7 @@ describe('Integration Test', () => {
     // import walk from 'acorn-walk'
     const parser = acorn.Parser.extend(jsx())
 
-    withJsx(walk)
+    extendWalk(walk)
 
     const source = `
       const a = 2

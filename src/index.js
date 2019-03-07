@@ -1,4 +1,4 @@
-export default function withJsx(walk = {}) {
+export function extendWalk(walk = {}) {
   extendBase(walk.base)
 }
 
