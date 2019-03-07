@@ -1,17 +1,27 @@
-export default function withJsx(walk) {
-  const { base } = walk
-  const { ExpressionStatement, Identifier, SpreadElement } = base
+export default function withJsx(walk = {}) {
+  extendBase(walk.base)
+}
+
+export function extendBase(base = {}) {
+  const isValidBase =
+    base.ExpressionStatement != null &&
+    base.SpreadElement != null &&
+    base.Identifier != null
+
+  if (!isValidBase) {
+    throw Error('Invalid visitor base object.')
+  }
 
   // prettier-ignore
   {
-    base.JSXExpressionContainer = ExpressionStatement
-    base.JSXSpreadChild         = ExpressionStatement
-    base.JSXClosingFragment     = Identifier
-    base.JSXEmptyExpression     = Identifier
-    base.JSXIdentifier          = Identifier
-    base.JSXOpeningFragment     = Identifier
-    base.JSXText                = Identifier
-    base.JSXSpreadAttribute     = SpreadElement
+    base.JSXExpressionContainer = base.ExpressionStatement
+    base.JSXSpreadChild         = base.ExpressionStatement
+    base.JSXClosingFragment     = base.Identifier
+    base.JSXEmptyExpression     = base.Identifier
+    base.JSXIdentifier          = base.Identifier
+    base.JSXOpeningFragment     = base.Identifier
+    base.JSXText                = base.Identifier
+    base.JSXSpreadAttribute     = base.SpreadElement
   }
 
   base.JSXAttribute = (node, state, callback) => {

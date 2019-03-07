@@ -3,86 +3,96 @@ import jsx from 'acorn-jsx'
 import walk from 'acorn-walk'
 
 import { assert } from 'chai'
-import withJsx from '../src'
+import withJsx, { extendBase } from '../src'
 
-const mockWalk = {
-  base: {
-    ExpressionStatement: true,
-    Identifier: true,
-    SpreadElement: true,
-  },
+const mockBase = {
+  ExpressionStatement: true,
+  Identifier: true,
+  SpreadElement: true,
 }
 
 describe('JSX support for Acorn Walk', () => {
-  before(() => withJsx(mockWalk))
+  before(() => extendBase(mockBase))
 
   describe('Bindings', () => {
-    it('Extends walk base with JSXExpressionContainer', () => {
-      assert.isDefined(mockWalk.base.JSXExpressionContainer)
+    it('Extends visitor base with JSXExpressionContainer', () => {
+      assert.isDefined(mockBase.JSXExpressionContainer)
     })
 
-    it('Extends walk base with JSXSpreadChild', () => {
-      assert.isDefined(mockWalk.base.JSXSpreadChild)
+    it('Extends visitor base with JSXSpreadChild', () => {
+      assert.isDefined(mockBase.JSXSpreadChild)
     })
 
-    it('Extends walk base with JSXClosingFragment', () => {
-      assert.isDefined(mockWalk.base.JSXClosingFragment)
+    it('Extends visitor base with JSXClosingFragment', () => {
+      assert.isDefined(mockBase.JSXClosingFragment)
     })
 
-    it('Extends walk base with JSXEmptyExpression', () => {
-      assert.isDefined(mockWalk.base.JSXEmptyExpression)
+    it('Extends visitor base with JSXEmptyExpression', () => {
+      assert.isDefined(mockBase.JSXEmptyExpression)
     })
 
-    it('Extends walk base with JSXIdentifier', () => {
-      assert.isDefined(mockWalk.base.JSXIdentifier)
+    it('Extends visitor base with JSXIdentifier', () => {
+      assert.isDefined(mockBase.JSXIdentifier)
     })
 
-    it('Extends walk base with JSXOpeningFragment', () => {
-      assert.isDefined(mockWalk.base.JSXOpeningFragment)
+    it('Extends visitor base with JSXOpeningFragment', () => {
+      assert.isDefined(mockBase.JSXOpeningFragment)
     })
 
-    it('Extends walk base with JSXText', () => {
-      assert.isDefined(mockWalk.base.JSXText)
+    it('Extends visitor base with JSXText', () => {
+      assert.isDefined(mockBase.JSXText)
     })
 
-    it('Extends walk base with JSXSpreadAttribute', () => {
-      assert.isDefined(mockWalk.base.JSXSpreadAttribute)
+    it('Extends visitor base with JSXSpreadAttribute', () => {
+      assert.isDefined(mockBase.JSXSpreadAttribute)
     })
   })
 
   describe('JSX Nodes', () => {
-    it('Extends walk base with JSXAttribute', () => {
-      assert.isDefined(mockWalk.base.JSXAttribute)
+    it('Extends visitor base with JSXAttribute', () => {
+      assert.isDefined(mockBase.JSXAttribute)
     })
 
-    it('Extends walk base with JSXMemberExpression', () => {
-      assert.isDefined(mockWalk.base.JSXMemberExpression)
+    it('Extends visitor base with JSXMemberExpression', () => {
+      assert.isDefined(mockBase.JSXMemberExpression)
     })
 
-    it('Extends walk base with JSXNamespacedName', () => {
-      assert.isDefined(mockWalk.base.JSXNamespacedName)
+    it('Extends visitor base with JSXNamespacedName', () => {
+      assert.isDefined(mockBase.JSXNamespacedName)
     })
 
-    it('Extends walk base with JSXOpeningElement', () => {
-      assert.isDefined(mockWalk.base.JSXOpeningElement)
+    it('Extends visitor base with JSXOpeningElement', () => {
+      assert.isDefined(mockBase.JSXOpeningElement)
     })
 
-    it('Extends walk base with JSXClosingElement', () => {
-      assert.isDefined(mockWalk.base.JSXClosingElement)
+    it('Extends visitor base with JSXClosingElement', () => {
+      assert.isDefined(mockBase.JSXClosingElement)
     })
 
-    it('Extends walk base with JSXElement', () => {
-      assert.isDefined(mockWalk.base.JSXElement)
+    it('Extends visitor base with JSXElement', () => {
+      assert.isDefined(mockBase.JSXElement)
     })
 
-    it('Extends walk base with JSXFragment', () => {
-      assert.isDefined(mockWalk.base.JSXFragment)
+    it('Extends visitor base with JSXFragment', () => {
+      assert.isDefined(mockBase.JSXFragment)
+    })
+  })
+
+  describe('Error Handling', () => {
+    it('Throws when provided an invalid visitor base object', () => {
+      let caught
+      try {
+        extendBase(null)
+      } catch (err) {
+        caught = err
+      }
+      assert.isDefined(caught)
     })
   })
 })
 
 describe('Integration Test', () => {
-  it('Should find JSX Elements', () => {
+  it('Finds JSX Elements', () => {
     // import acorn from 'acorn'
     // import jsx from 'acorn-jsx'
     // import walk from 'acorn-walk'
