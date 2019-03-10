@@ -1,14 +1,43 @@
-export function extendWalk(walk = {}) {
-  extendBase(walk.base)
+/**
+ * @module acorn-jsx-walk
+ */
+
+/**
+ * Type check for functions.
+ *
+ * @param  {any} value
+ * @return {boolean}
+ */
+function isFunc(value) {
+  return (
+    typeof value === 'function' ||
+    !!(value && value.constructor && value.call && value.apply)
+  )
 }
 
-export function extendBase(base = {}) {
-  const isValidBase =
-    base.ExpressionStatement != null &&
-    base.SpreadElement != null &&
-    base.Identifier != null
+/**
+ * Check base object for required visitor functions.
+ *
+ * @param  {Object} base - Visitor base object.
+ * @return {boolean}
+ */
+function isValidBase(base = {}) {
+  return (
+    isFunc(base.ExpressionStatement) &&
+    isFunc(base.SpreadElement) &&
+    isFunc(base.Identifier)
+  )
+}
 
-  if (!isValidBase) {
+/**
+ * Attempt to extend the base object with
+ * JSX visitor function definitions.
+ *
+ * @param  {Object} base - Visitor base object.
+ * @return {void}
+ */
+export function extend(base = {}) {
+  if (!isValidBase(base)) {
     throw Error('Invalid visitor base object.')
   }
 
