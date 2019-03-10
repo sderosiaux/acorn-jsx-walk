@@ -3,16 +3,16 @@ import jsx from 'acorn-jsx'
 import walk from 'acorn-walk'
 
 import { assert } from 'chai'
-import { extendBase, extendWalk } from '../src'
+import { extend } from '../src'
 
 const mockBase = {
-  ExpressionStatement: true,
-  Identifier: true,
-  SpreadElement: true,
+  ExpressionStatement: () => {},
+  SpreadElement: () => {},
+  Identifier: () => {},
 }
 
 describe('JSX support for Acorn Walk', () => {
-  before(() => extendBase(mockBase))
+  before(() => extend(mockBase))
 
   describe('Bindings', () => {
     it('Extends visitor base with JSXExpressionContainer', () => {
@@ -82,7 +82,7 @@ describe('JSX support for Acorn Walk', () => {
     it('Throws when provided an invalid visitor base object', () => {
       let caught
       try {
-        extendBase(null)
+        extend(null)
       } catch (err) {
         caught = err
       }
@@ -98,7 +98,7 @@ describe('Integration Test', () => {
     // import walk from 'acorn-walk'
     const parser = acorn.Parser.extend(jsx())
 
-    extendWalk(walk)
+    extend(walk.base)
 
     const source = `
       const a = 2
