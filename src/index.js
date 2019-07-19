@@ -1,5 +1,5 @@
 /**
- * @module acorn-jsx-walk
+ * @module acornJsxWalk
  */
 
 /**
